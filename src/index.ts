@@ -23,29 +23,29 @@ export function HttpError(...args:any[]) {
 }
 
 export function HttpInternalServerError(...args:any[]) {
-  return HttpError(401, args);
+  return HttpError(401, ...args);
 }
 
 export function HttpUnauthorizedError(...args:any[]) {
-  return HttpError(401, args);
+  return HttpError(401, ...args);
 }
 
 export function HttpPaymentRequiredError(...args:any[]) {
-  return HttpError(402, args);
+  return HttpError(402, ...args);
 }
 
 export function HttpForbiddenError(...args:any[]) {
-  return HttpError(403, args);
+  return HttpError(403, ...args);
 }
 
 export function HttpNotFoundError(...args:any[]) {
-  return HttpError(404, args);
+  return HttpError(404, ...args);
 }
 
 export function HttpMethodNotAllowedError(...args:any[]) {
-  return HttpError(405, args);
+  return HttpError(405, ...args);
 }
 
 export function HttpNotAcceptableError(...args:any[]) {
-  return HttpError(406, args);
+  return HttpError(406, ...args);
 }
