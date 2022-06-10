@@ -6,6 +6,7 @@ import {
   HttpNotFoundError,
   HttpMethodNotAllowedError,
   HttpNotAcceptableError,
+  HttpInternalServerError,
 } from '../src/index'
 
 test('HttpError', () => {
@@ -24,7 +25,6 @@ test('HttpError only StatusCode', () => {
   expect(error.code).toBeUndefined();
   expect(error.previous).toBeUndefined();
 });
-
 
 test('HttpUnauthorizedError', () => {
   const error = HttpUnauthorizedError("Unauthorized");
@@ -55,4 +55,9 @@ test('HttpMethodNotAllowedError', () => {
 test('HttpNotAcceptableError', () => {
   const error = HttpNotAcceptableError();
   expect(error.statusCode).toBe(406);
+});
+
+test('HttpInternalServerError', () => {
+  const error = HttpInternalServerError();
+  expect(error.statusCode).toBe(500);
 });

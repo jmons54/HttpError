@@ -1,9 +1,9 @@
 class HttpErrorBase extends Error {
 
   public name = "HttpError";
-  public statusCode:number = 500;
   
   constructor(
+    public statusCode:number,
     public message: string = "", 
     public code?: number, 
     public previous?: Error
@@ -14,16 +14,12 @@ class HttpErrorBase extends Error {
  
 export function HttpError(...args:any[]) {
   const error = new HttpErrorBase(
+    args[0],
     args[1], 
     args[2],
     args[3]
   );
-  error.statusCode = args[0];
   return error;
-}
-
-export function HttpInternalServerError(...args:any[]) {
-  return HttpError(401, ...args);
 }
 
 export function HttpUnauthorizedError(...args:any[]) {
@@ -48,4 +44,8 @@ export function HttpMethodNotAllowedError(...args:any[]) {
 
 export function HttpNotAcceptableError(...args:any[]) {
   return HttpError(406, ...args);
+}
+
+export function HttpInternalServerError(...args:any[]) {
+  return HttpError(500, ...args);
 }
