@@ -9,10 +9,10 @@ import {
 } from '../src/index'
 
 test('HttpError', () => {
-  const error = HttpError(414, "Test error", 1234, new Error);
+  const error = HttpError(414, "URI Too Long", 1234, new Error);
   expect(error).toBeInstanceOf(Error);
   expect(error.statusCode).toBe(414);
-  expect(error.message).toBe("Test error");
+  expect(error.message).toBe("URI Too Long");
   expect(error.code).toBe(1234);
   expect(error.previous).toBeInstanceOf(Error);
 });
@@ -27,8 +27,9 @@ test('HttpError only StatusCode', () => {
 
 
 test('HttpUnauthorizedError', () => {
-  const error = HttpUnauthorizedError();
+  const error = HttpUnauthorizedError("Unauthorized");
   expect(error.statusCode).toBe(401);
+  expect(error.message).toBe("Unauthorized");
 });
 
 test('HttpPaymentRequiredError', () => {
