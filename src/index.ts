@@ -1,52 +1,47 @@
-export abstract class HttpErrorAbstract implements Error {
+class HttpErrorBase extends Error {
 
-  public name = "HttpError"
-  
-  public abstract statusCode:number;
+  public name = "HttpError";
+  public statusCode?:number;
   
   constructor(
-    public message: string = "", 
-    public code?: number, 
-    public previous?: Error
-  ) {}
-}
-
-export class HttpError extends HttpErrorAbstract  {
-
-  constructor(
-    public statusCode: number, 
     public message: string = "", 
     public code?: number, 
     public previous?: Error
   ) {
-    super(message, code, previous)
+    super(message);
   }
 }
-
-export class HttpInternalServerError extends HttpErrorAbstract {
-  statusCode = 500
+ 
+export function HttpError(...args:any[]) {
+  const error = new HttpErrorBase(
+    args[1], 
+    args[2],
+    args[3]
+  );
+  error.statusCode = args[0] || 500;
+  return error;
 }
 
-export class HttpUnauthorizedError extends HttpErrorAbstract {
-  statusCode = 401
+export function HttpUnauthorizedError(...args:any[]) {
+  return HttpError(401, args);
 }
 
-export class HttpPaymentRequiredError extends HttpErrorAbstract {
-  statusCode = 402
+export function HttpPaymentRequiredError(...args:any[]) {
+  return HttpError(402, args);
 }
 
-export class HttpForbiddenError extends HttpErrorAbstract {
-  statusCode = 403
+export function HttpForbiddenError(...args:any[]) {
+  return HttpError(403, args);
 }
 
-export class HttpNotFoundError extends HttpErrorAbstract {
-  statusCode = 404
+export function HttpNotFoundError(...args:any[]) {
+  return HttpError(404, args);
 }
 
-export class HttpMethodNotAllowedError extends HttpErrorAbstract {
-  statusCode = 405
+export function HttpMethodNotAllowedError(...args:any[]) {
+  return HttpError(405, args);
 }
 
-export class HttpNotAcceptableError extends HttpErrorAbstract {
-  statusCode = 406
+export function HttpNotAcceptableError(...args:any[]) {
+  return HttpError(406, args);
 }
