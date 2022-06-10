@@ -18,30 +18,30 @@ function HttpError(...args) {
 }
 exports.HttpError = HttpError;
 function HttpInternalServerError(...args) {
-    return HttpError(401, args);
+    return HttpError(401, ...args);
 }
 exports.HttpInternalServerError = HttpInternalServerError;
 function HttpUnauthorizedError(...args) {
-    return HttpError(401, args);
+    return HttpError(401, ...args);
 }
 exports.HttpUnauthorizedError = HttpUnauthorizedError;
 function HttpPaymentRequiredError(...args) {
-    return HttpError(402, args);
+    return HttpError(402, ...args);
 }
 exports.HttpPaymentRequiredError = HttpPaymentRequiredError;
 function HttpForbiddenError(...args) {
-    return HttpError(403, args);
+    return HttpError(403, ...args);
 }
 exports.HttpForbiddenError = HttpForbiddenError;
 function HttpNotFoundError(...args) {
-    return HttpError(404, args);
+    return HttpError(404, ...args);
 }
 exports.HttpNotFoundError = HttpNotFoundError;
 function HttpMethodNotAllowedError(...args) {
-    return HttpError(405, args);
+    return HttpError(405, ...args);
 }
 exports.HttpMethodNotAllowedError = HttpMethodNotAllowedError;
 function HttpNotAcceptableError(...args) {
-    return HttpError(406, args);
+    return HttpError(406, ...args);
 }
 exports.HttpNotAcceptableError = HttpNotAcceptableError;
