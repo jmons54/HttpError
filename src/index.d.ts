@@ -1,6 +1,6 @@
-interface HttpErrorBase {
+interface HttpErrorBase extends Error {
   statusCode:number;
-  message?:string;
+  message:string;
   code?:number;
   previous?:Error;
 }

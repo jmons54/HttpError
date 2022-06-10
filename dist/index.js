@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.HttpNotAcceptableError = exports.HttpMethodNotAllowedError = exports.HttpNotFoundError = exports.HttpForbiddenError = exports.HttpPaymentRequiredError = exports.HttpUnauthorizedError = exports.HttpError = void 0;
+exports.HttpNotAcceptableError = exports.HttpMethodNotAllowedError = exports.HttpNotFoundError = exports.HttpForbiddenError = exports.HttpPaymentRequiredError = exports.HttpUnauthorizedError = exports.HttpInternalServerError = exports.HttpError = void 0;
 class HttpErrorBase extends Error {
     constructor(message = "", code, previous) {
         super(message);
@@ -8,14 +8,19 @@ class HttpErrorBase extends Error {
         this.code = code;
         this.previous = previous;
         this.name = "HttpError";
+        this.statusCode = 500;
     }
 }
 function HttpError(...args) {
     const error = new HttpErrorBase(args[1], args[2], args[3]);
-    error.statusCode = args[0] || 500;
+    error.statusCode = args[0];
     return error;
 }
 exports.HttpError = HttpError;
+function HttpInternalServerError(...args) {
+    return HttpError(401, args);
+}
+exports.HttpInternalServerError = HttpInternalServerError;
 function HttpUnauthorizedError(...args) {
     return HttpError(401, args);
 }

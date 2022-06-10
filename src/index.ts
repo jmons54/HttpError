@@ -1,7 +1,7 @@
 class HttpErrorBase extends Error {
 
   public name = "HttpError";
-  public statusCode?:number;
+  public statusCode:number = 500;
   
   constructor(
     public message: string = "", 
@@ -18,8 +18,12 @@ export function HttpError(...args:any[]) {
     args[2],
     args[3]
   );
-  error.statusCode = args[0] || 500;
+  error.statusCode = args[0];
   return error;
+}
+
+export function HttpInternalServerError(...args:any[]) {
+  return HttpError(401, args);
 }
 
 export function HttpUnauthorizedError(...args:any[]) {
